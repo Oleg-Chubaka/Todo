@@ -1,0 +1,33 @@
+%head
+  %title Таблица дел
+  %link(href="/css/style.css" rel="stylesheet")
+  %link(href="/css/bootstrap.min.scss" rel="stylesheet")
+  %meta(name="viewport" content="width=device-width, initial-scale=1")
+%body
+  .container
+    .row.block-header
+
+      .skobileft.skobki
+        %img.skoba1(src=@skoba)
+        %img.skoba2(src=@skoba)
+        %img.skoba3(src=@skoba)
+      %h1 TODO book
+      .skobiright.skobki
+        %img.skoba1(src=@skoba)
+        %img.skoba2(src=@skoba)
+        %img.skoba3(src=@skoba)
+    .row.block-main
+      %form(method="post" action="/todo/update" )
+        %h1= @todo.id
+        %input(type='hidden'value="#{@todo.id}" name='id')
+        %p Item title:
+        %input(value="#{@todo.title}" name='title')
+        %br
+        %p Item term:
+        %input(type='date' value="#{@todo.term.nil? ? '' : @todo.term.strftime("%Y-%m-%d")}" name='term')
+        %br
+        %br
+        %button save
+
+  %script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
+  %script(src="/bootstrap-sass-3.3.7/assets/javascripts/bootstrap.min.js")
