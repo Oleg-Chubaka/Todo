@@ -4,33 +4,43 @@ require './models/todo'
 require 'time'
 
 set :database, "sqlite3:todo.sqlite3"
-skoba = '/images/skoba.png'
-get '/' do
-  "Hello World"
+
+before do
+  @skoba = '/images/skoba.png'
+end
+
+before /\/todos\/(\d+)(\/(edit|destroy))?/ do |id, a, b|
+  @todo = Todo.find(id)
 end
 
 get '/todos' do
-  @skoba = skoba
   @todos = Todo.all
-  haml :todos
+  haml :'todos/index'
 end
 
-get '/todo_delete/:id' do
-  @todo = Todo.find(params[:id])
-  @todo.destroy
+get '/todos/new' do
+  @todo = Todo.new
+  haml :'todos/edit'
+end
+
+post '/todos' do
+  @todo = Todo.create(title: params[:title], term: params[:term])
+  @todo.save
   redirect '/todos'
 end
 
-get '/todo_edit/:id' do
-  @skoba = skoba
-  @todo = Todo.find(params[:id])
-  haml :todo
+get '/todos/:id/edit' do
+  haml :'todos/edit'
 end
 
-post '/todo/update' do
-  @todo = Todo.find(params[:id])
+post '/todos/:id' do
   @todo.update(title: params[:title], term: params[:term])
   @todo.save
+  redirect '/todos'
+end
+
+get '/todos/:id/destroy' do
+  @todo.destroy
   redirect '/todos'
 end
 

@@ -1,0 +1,51 @@
+%head
+  %title Таблица дел
+  %link(href="/css/style.css" rel="stylesheet")
+  %link(href="/css/bootstrap.min.scss" rel="stylesheet")
+  %link(rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.css")
+  %meta(name="viewport" content="width=device-width, initial-scale=1")
+%body
+  .container
+    .row.block-header
+      .skobileft.skobki
+        %img.skoba1(src=@skoba)
+        %img.skoba2(src=@skoba)
+        %img.skoba3(src=@skoba)
+      %h1 TODO book
+      %a(href='/todos/new')
+        %i.newTodo.fa.fa-plus-circle.fa-2x(aria-hidden="true")
+      .skobiright.skobki
+        %img.skoba1(src=@skoba)
+        %img.skoba2(src=@skoba)
+        %img.skoba3(src=@skoba)
+    .row.block-main
+      - t = DateTime.now
+      %h1= t.strftime("%a, %e %B %Y")
+      .row.th
+        .col-md-1 id
+        .col-md-5 title
+        .col-md-4 term
+      - @todos.each do |todo|
+        .row
+          .col-md-1= todo.id
+          .col-md-5= todo.title
+          .col-md-4= todo.term.nil? ? 'infinity' : todo.term.strftime("%a, %e %B %Y")
+          .col-md-1
+            %a(type="button" data-toggle="modal" data-target="#todo_#{todo.id}")
+              %i.fa.fa-trash(aria-hidden="true")
+            .modal.fade(id="todo_#{todo.id}" tabindex="-1" role="dialog")
+              .modal-dialog.modal-md(role="document")
+                .modal-content
+                  .modal-header
+                    %h3 Are you sure you want to delete the record?
+                    %a(data-dismiss="modal")
+                      %i.fa.fa-close.close_modal
+                  .modal-body
+                    %p If you delete the record, cancel the action will be impossible!
+                  .modal-footer.delete
+                    %a(href="/todos/#{todo.id}/destroy") Delete
+          .col-md-1
+            %a(href="/todos/#{todo.id}/edit")
+              %i.fa.fa-pencil(aria-hidden="true" )
+  %script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
+  %script(src="/bootstrap-sass-3.3.7/assets/javascripts/bootstrap.min.js")

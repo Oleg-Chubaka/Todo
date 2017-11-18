@@ -23,6 +23,18 @@ body{
       h1{
         text-align: center;
       }
+      .back{
+        position: absolute;
+        top: 40%;
+        left: 47px;
+        color: #fbda90;
+      }
+      .newTodo{
+        position: absolute;
+        top: 40%;
+        right: 47px;
+        color: #fbda90;
+      }
       .skobki {
         position: absolute;
         top: -8px;
@@ -55,6 +67,27 @@ body{
           a{
             color: #320f11;
             cursor: pointer;
+            text-decoration: none;
+          }
+          .modal{
+            h3{
+              font-weight: bold;
+            }
+            .close_modal{
+              position: absolute;
+              top: 15px;
+              right: 15px;
+            }
+            .delete{
+              text-align: center;
+              a{
+                width: 100%;
+                height: 100%;
+              }
+              &:hover{
+                background: rgba(0, 0, 0, 0.1);
+              }
+            }
           }
         }
         &:hover:not(.th){
