@@ -3,6 +3,7 @@
   %link(href="/css/style.css" rel="stylesheet")
   %link(href="/css/bootstrap.min.scss" rel="stylesheet")
   %link(rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.css")
+  %link(rel="icon" href="/images/logo.png" type="images/png")
   %meta(name="viewport" content="width=device-width, initial-scale=1")
 %body
   .container
@@ -18,7 +19,7 @@
         %img.skoba1(src=@skoba)
         %img.skoba2(src=@skoba)
         %img.skoba3(src=@skoba)
-    .row.block-main
+    .row.block-main.block-edit
       %form(method="post" action="/todos#{@todo.id.nil? ? '' : '/' + @todo.id.to_s}" )
         %h1= @todo.id
         %input(type='hidden'value="#{@todo.id}" name='id')

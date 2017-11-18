@@ -5868,5 +5868,7 @@ body {
           background: rgba(169, 169, 169, 0.2); }
       body .container .block-main .row:not(:last-child) {
         border-bottom: 1px solid #322512; }
+    body .container .block-edit {
+      padding-left: 20px; }
 
 /*# sourceMappingURL=style.css.map */
