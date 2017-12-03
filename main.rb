@@ -24,7 +24,7 @@ get '/todos/new' do
 end
 
 post '/todos' do
-  @todo = Todo.create(title: params[:title], term: params[:term])
+  @todo = Todo.create(title: params[:title], term: params[:term], complite: params[:complite])
   @todo.save
   redirect '/todos'
 end
@@ -34,7 +34,7 @@ get '/todos/:id/edit' do
 end
 
 post '/todos/:id' do
-  @todo.update(title: params[:title], term: params[:term])
+  @todo.update(title: params[:title], term: params[:term], complite: params[:complite])
   @todo.save
   redirect '/todos'
 end

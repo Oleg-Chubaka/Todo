@@ -23,11 +23,17 @@
       %form(method="post" action="/todos#{@todo.id.nil? ? '' : '/' + @todo.id.to_s}" )
         %h1= @todo.id
         %input(type='hidden'value="#{@todo.id}" name='id')
-        %p Item title:
+        %p Title:
         %input(value="#{@todo.title}" name='title')
         %br
-        %p Item term:
+        %br
+        %p Term:
         %input(type='date' value="#{@todo.term.nil? ? '' : @todo.term.strftime("%Y-%m-%d")}" name='term')
+        %br
+        %br
+        %p Complited:
+        %input(type='hidden' value='f' name='complite')
+        %input{type: 'checkbox', value: 't', name: 'complite', checked: @todo.complite}
         %br
         %br
         %button save

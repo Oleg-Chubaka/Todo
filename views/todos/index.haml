@@ -24,13 +24,15 @@
       %h1= t.strftime("%a, %e %B %Y")
       .row.th
         .col-md-1 id
-        .col-md-5 title
-        .col-md-4 term
+        .col-md-4 title
+        .col-md-3 term
+        .col-md-2 complited
       - @todos.each do |todo|
         .row
           .col-md-1= todo.id
-          .col-md-5= todo.title
-          .col-md-4= todo.term.nil? ? 'infinity' : todo.term.strftime("%a, %e %B %Y")
+          .col-md-4= todo.title
+          .col-md-3= todo.term.nil? ? 'infinity' : todo.term.strftime("%a, %e %B %Y")
+          .col-md-2= todo.complite
           .col-md-1
             %a(type="button" data-toggle="modal" data-target="#todo_#{todo.id}")
               %i.fa.fa-trash(aria-hidden="true")
